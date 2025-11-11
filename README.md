@@ -1,8 +1,7 @@
 # Project Overview: Employee Churn Prediction
 
-### Disclaimer
-
-This project is intended to fulfill the requirements of the Machine Learning Zoomcamp midterm project.
+> [!NOTE]
+> Disclaimer: This project has been developed to meet the requirements of the Machine Learning Zoomcamp midterm assignment.
 
 ## Problem Description
 
@@ -41,6 +40,41 @@ The ROC-AUC score will serve as the primary evaluation metric, as it offers a ro
 Employee retention directly impacts a company’s financial health and culture.
 Replacing an employee can cost 30–200% of their annual salary, depending on the role.
 Predictive analytics can empower organizations to act before churn happens, making workforce management more strategic and humane.
+
+## Dataset Description
+
+### Context
+
+The dataset contains detailed information about employees in a company, capturing factors that may influence employee retention and churn. It includes data on demographics, educational background, work history, and employment-related attributes. This information can be used to analyze patterns in employee behavior and build predictive models for workforce management.
+
+### Features
+
+The dataset includes both numerical and categorical features, such as:
+
+- Education: The educational qualifications of employees, including degree, institution, and field of study.
+
+- Joining Year: The year each employee joined the company, indicating their length of service.
+
+- City: The location or city where each employee is based or works.
+
+- Payment Tier: Categorization of employees into different salary tiers.
+
+- Age: The age of each employee, providing demographic insights.
+
+- Gender: Gender identity of employees, promoting diversity analysis.
+
+- Ever Benched: Indicates if an employee has ever been temporarily without assigned work.
+
+- Experience in Current Domain: The number of years of experience employees have in their current field.
+
+- Leave or Not: a target column
+
+### Purpose
+
+This dataset is primarily used for predicting employee churn, helping organizations identify at-risk employees and design retention strategies. It is particularly useful for building classification models and exploring factors that influence employee turnover.
+
+### Source
+[Employee Dataset on Kaggle](https://www.kaggle.com/datasets/tawfikelmetwally/employee-dataset/data)
 
 ## EDA
 
@@ -117,32 +151,68 @@ source .venv/bin/activate
 ```
 
 ## Scripts
+
 #### `train.py` 
 Trains the model using the prepared dataset and saves the trained model artifact for later use.
-```
+```bash
 python train.py
 ```
 
 #### `predict.py`
 Loads the saved model and performs inference on new or unseen data.
-```
+```bash
 python predict.py
 ```
 
 #### `serve.py`
 Hosts the trained model as a web service, allowing users to make predictions through an API or web interface.
-```
+```bash
 fastapi dev serve.py
 ```
 *Ensure that you have installed the dependency `fastapi[standard]` before running this command.*
 
 
 ## Reproducibility
+
 After installing all required dependencies, you can reproduce the results by running the notebook (notebook.ipynb) or executing any of the scripts (train.py, predict.py, serve.py) as per the provided instructions.
 
 ## Model Deployment
-```
+
+> Start the production server using the following command:
+```bash
 fastapi run serve.py
 ```
 
+> Then, open your browser and navigate to http://127.0.0.1:8000/docs to access the API documentation and test the /predict endpoint, or use the command below in the terminal.
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/predict' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "education": "bachelors",
+  "joining_year": 2016,
+  "city": "pune",
+  "payment_tier": "high",
+  "age": 26,
+  "gender": "female",
+  "ever_benched": "no",
+  "experience": 4,
+  "job_tenure": 2
+}'
+```
 ## Containerization
+
+> As a prerequisite, ensure Docker is installed on your device. Then, build the Docker image using the following command in the project directory.
+```
+docker build -t employee-churn .
+```
+
+> To start the Docker container, use the command below. Once it’s running, you can access the `/predict` endpoint at http://127.0.0.1:8000/docs
+```
+docker run -dit --rm --name employee-churn-service -p8000:8000 employee-churn
+```
+
+## Acknowledgements
+
+I would like to sincerely thank Alexey Grigorev for the invaluable course materials and guidance provided in the Machine Learning Zoomcamp, which greatly contributed to the completion of this project.
