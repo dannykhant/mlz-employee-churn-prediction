@@ -223,7 +223,23 @@ docker ps
 ![Docker](images/deploy_docker.png)
 
 ## Cloud Deployment
--- Coming soon...
+[Render](https://render.com) will be used for cloud deployment. As a prerequisite, ensure you have a Render account set up.
+
+The deployment process on Render is straightforward. It utilizes Blueprints, an Infrastructure-as-Code (IaC) tool provided by Render.
+
+> Navigate to the Blueprints page on Render and create a new blueprint using your Git repository, as shown below.
+
+![Render](images/cloud-deploy.png)
+
+> Render will automatically detect the YAML configuration file and begin the deployment process.
+
+![Blueprint](images/cloud-blueprint.png)
+
+> After the deployment completes, go to the Projects page to access the newly created web service.
+
+![Service](images/cloud-service.png)
+
+> To tear down the deployment, open the Settings page of the web service and choose to suspend or delete it.
 
 ## Acknowledgements
 
