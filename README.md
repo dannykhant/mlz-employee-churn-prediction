@@ -3,6 +3,8 @@
 > [!NOTE]
 > Disclaimer: This project has been developed to meet the requirements of the Machine Learning Zoomcamp midterm assignment.
 
+![Diagram](images/diagram.png)
+
 ## Problem Description
 
 Employee turnover or "churn" is a major challenge for organizations. High churn rates increase recruitment and training costs, disrupt team productivity, and can harm morale.
@@ -183,6 +185,7 @@ After installing all required dependencies, you can reproduce the results by run
 fastapi run serve.py
 ```
 
+![FastAPI](images/deploy_fastapi.png)
 > Then, open your browser and navigate to http://127.0.0.1:8000/docs to access the API documentation and test the /predict endpoint, or use the command below in the terminal.
 ```bash
 curl -X 'POST' \
@@ -201,6 +204,7 @@ curl -X 'POST' \
   "job_tenure": 2
 }'
 ```
+
 ## Containerization
 
 > As a prerequisite, ensure Docker is installed on your device. Then, build the Docker image using the following command in the project directory.
@@ -212,6 +216,14 @@ docker build -t employee-churn .
 ```
 docker run -dit --rm --name employee-churn-service -p8000:8000 employee-churn
 ```
+> To verify whether the container is running, execute the following command.
+```
+docker ps
+```
+![Docker](images/deploy_docker.png)
+
+## Cloud Deployment
+-- Coming soon...
 
 ## Acknowledgements
 
