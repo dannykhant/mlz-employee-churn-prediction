@@ -209,12 +209,12 @@ curl -X 'POST' \
 
 > As a prerequisite, ensure Docker is installed on your device. Then, build the Docker image using the following command in the project directory.
 ```
-docker build -t employee-churn .
+docker build -t employee-churn-prediction .
 ```
 
 > To start the Docker container, use the command below. Once it’s running, you can access the `/predict` endpoint at http://127.0.0.1:8000/docs
 ```
-docker run -dit --rm --name employee-churn-service -p8000:8000 employee-churn
+docker run -dit --rm --name employee-churn-prediction-service -p8000:8000 employee-churn-prediction
 ```
 > To verify whether the container is running, execute the following command.
 ```
